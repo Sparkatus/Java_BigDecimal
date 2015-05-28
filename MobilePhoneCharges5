@@ -1,0 +1,38 @@
+import java.math.*;
+import java.util.Scanner;
+public class MobilePhoneCharges5 {
+public static void main(String[ ]args){
+// Declare Variables cpm is cost per month , inp is input text , ppm is pence per minute ,mins is static max mins to compare with , ocvalue is overcharge value  
+BigDecimal cpm, inp, ppm ,mins, ppm2, ocvalue, total,ppm3;
+int overcharge;
+
+Scanner scan = new Scanner (System.in);
+
+cpm = new BigDecimal(29.95);
+cpm = cpm.setScale(2, RoundingMode.HALF_EVEN);
+mins = new BigDecimal(300);
+ocvalue = new BigDecimal (00.45);
+ocvalue = ocvalue.setScale(2, RoundingMode.HALF_EVEN);
+
+System.out.println( "Enter Your Mobile Phone Minutes :" );
+inp = scan.nextBigDecimal();
+
+ppm = cpm.divide (inp, 2, RoundingMode.HALF_EVEN);
+ppm2= inp.subtract(mins);
+ppm3=ppm2.multiply(ocvalue); 
+ppm3=ppm3.setScale(2, RoundingMode.HALF_EVEN);
+
+String str = "Mobile phone charges per pence per minute are " +ppm;
+String str2 = "You are " +ppm2 +" minutes over your limit of " +mins +" minutes at a cost of " +cpm +" plus " +ppm3; 
+// String str3 = "Mobile phone charges including sales tax are";
+
+overcharge=mins.compareTo(inp); // compare static minutes to inputted minutes 
+if (overcharge == 0) // if static minutes are equal to inputted minutes
+System.out.println( str );
+else if (overcharge == 1) // if static minutes are higher than inputted minutes
+System.out.println( str );
+else if (overcharge == -1) // if inputted minutes are higher than the fixed cost minutes
+System.out.println( str2 );
+
+}
+}
